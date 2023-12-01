@@ -1,0 +1,118 @@
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.file-label {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #3498db; /* Blue color */
+}
+
+input[type="file"] {
+  padding: 10px;
+  border: 2px solid #3498db; /* Blue border */
+  border-radius: 5px;
+  font-size: 1em;
+  transition: border-color 0.3s ease-in-out;
+}
+
+input[type="file"]:focus {
+  outline: none;
+  border-color: #2980b9; /* Darker blue on focus */
+}
+
+input[type="file"]::placeholder {
+  color: #95a5a6; /* Gray placeholder text */
+}
+.section {
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #2ecc71; /* Green color */
+}
+
+.section pre {
+  white-space: pre-wrap;
+  background-color: #f8f9fa; /* Light gray background color */
+  padding: 10px;
+  border-radius: 5px;
+  font-family: 'Courier New', monospace; /* Monospaced font for code-like content */
+  color: #333; /* Dark gray text color */
+  overflow-x: auto; /* Enable horizontal scrolling if needed */
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #3498db; /* Blue background color */
+  color: #fff; /* White text color */
+  font-family: 'Arial', sans-serif;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease-in-out;
+}
+
+ul li:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+}
+
+.error-message {
+  margin-bottom: 20px;
+}
+
+.error-message p {
+  color: #e74c3c; /* Red color */
+  font-weight: bold;
+  font-size: 1.2em;
+  margin: 0;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f8d7da; /* Light red background color */
+  transition: background-color 0.3s ease-in-out;
+}
+
+.error-message p:hover {
+  background-color: #ffe6e6; /* Lighter red on hover */
+}
+
+.log-messages {
+  margin-bottom: 20px;
+}
+
+.log-messages h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #2ecc71; /* Green color */
+}
+
+.log-messages ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.log-messages .log-message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f8f9fa; /* Light gray background color */
+  color: #333; /* Dark gray color */
+  font-family: 'Arial', sans-serif;
+  font-size: 1em;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.log-messages .log-message:hover {
+  background-color: #eaf5fe; /* Light blue on hover */
+}
