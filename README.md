@@ -1,14 +1,23 @@
 # LoaderApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
+Welcome to your LoaderApp project!
+Web application that allows users to load .txt files from their desktop, display the contents on the screen, and then calculate the count of repeated words within the loaded file.
+This project is built with Angular and includes instructions for installing dependencies and running tests with coverage.
+
+## Installation
+
+To get started, follow these steps:
+
+1. Clone the repository to your local machine:
+
+   Use `bash`
+   git clone https://github.com/AbdelrahmanNasser1/loader-app.git
+
+2. Run `npm i --legacy-peer-deps` for installing dependencies to this project, and create the `node_modules`.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
@@ -16,12 +25,10 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` to execute the unit tests via [Karma].
 
-## Running end-to-end tests
+## Running code coverage
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Run `ng test --code-coverage` to execute the unit tests via [Karma], and to see your test coverage for app.
+It will generate a coverage folder for your web application
+Navigate to path of folder and run index.html to see your report.
