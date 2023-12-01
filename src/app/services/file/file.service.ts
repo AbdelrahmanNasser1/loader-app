@@ -30,9 +30,11 @@ export class FileService {
     const words = content.split(/\s+/);
     const wordCount = new Map<string, number>();
 
-    words.forEach((element) => {
-      element.toLowerCase();
-      wordCount.set(element, (wordCount.get(element) || 0) + 1);
+    words.forEach((word) => {
+      const sanitizedWord = word.toLowerCase().replace(/[^\w]/g, '');
+      if (sanitizedWord) {
+        wordCount.set(sanitizedWord, (wordCount.get(sanitizedWord) || 0) + 1);
+      }
     });
 
     return wordCount;

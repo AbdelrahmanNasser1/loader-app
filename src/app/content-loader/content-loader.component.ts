@@ -29,26 +29,33 @@ export class ContentLoaderComponent {
 
       if (file.type !== allowedFileType) {
         this.error = 'Invalid file type. Please select a .txt file.';
-        this.loggingService.logEvent('Invalid file type selected');
+        this.loggingService.handleError(this.error);
+
+        // Clear previous fileContent and wordCountArray on error
+        this.fileContent = null;
+        this.wordCountArray = null;
+        this.logMessages = [];
+        this.showError('Invalid file type. Please select a .txt file.');
+
         return;
       }
-
-      this.fileService
-        .readFile(file)
-        .pipe(
-          catchError((error) => {
-            this.error = 'Error reading file. Please try again.';
-            this.loggingService.handleError(error);
-            return throwError(error);
-          })
-        )
-        .subscribe((content) => {
+      this.clearError();
+      this.fileService.readFile(file).subscribe({
+        next: (content: string) => {
           this.fileContent = content;
           this.wordCount = this.fileService.countWords(content);
           this.wordCountArray = Array.from(this.wordCount.entries());
           this.logEvent('File successfully loaded'); // Log the event
           this.error = null;
-        });
+        },
+        error: (error: Error) => {
+          this.loggingService.handleError(error);
+          this.fileContent = null;
+          this.wordCountArray = null;
+          this.logMessages = [];
+          this.showError('Error reading file. Please try again.');
+        },
+      });
     } else {
       this.error = 'No file selected';
       this.logEvent('No file selected');
@@ -59,5 +66,14 @@ export class ContentLoaderComponent {
   private logEvent(message: string): void {
     this.loggingService.logEvent(message);
     this.logMessages.push(message); // Store log messages for display
+  }
+
+  private showError(message: string): void {
+    this.error = message;
+    alert(message); // Display error message in an alert
+  }
+
+  private clearError(): void {
+    this.error = null;
   }
 }

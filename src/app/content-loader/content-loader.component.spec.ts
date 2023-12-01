@@ -53,14 +53,15 @@ describe('ContentLoaderComponent', () => {
       expect(component.error).toEqual(
         'Invalid file type. Please select a .txt file.'
       );
-      expect(loggingServiceSpy.logEvent).toHaveBeenCalledWith(
-        'Invalid file type selected'
-      );
     });
 
     it('should handle file read error', () => {
       const error = new Error('Test error');
-      spyOn(fileServiceSpy, 'readFile').and.returnValue(throwError(error));
+
+      fileServiceSpy.readFile = jasmine
+        .createSpy()
+        .and.returnValue(throwError(error));
+
       const validFile = new File(['Test content'], 'test.txt', {
         type: 'text/plain',
       });
@@ -73,11 +74,15 @@ describe('ContentLoaderComponent', () => {
     });
 
     it('should load file content and count words', () => {
-      const content = 'This is a test file.';
-      spyOn(fileServiceSpy, 'readFile').and.returnValue(of(content));
-      spyOn(fileServiceSpy, 'countWords').and.returnValue(
-        new Map([['test', 1]])
-      );
+      const content = 'test';
+      fileServiceSpy.readFile = jasmine
+        .createSpy()
+        .and.returnValue(of(content));
+
+      fileServiceSpy.countWords = jasmine
+        .createSpy()
+        .and.returnValue(new Map([['test', 1]]));
+
       const validFile = new File([content], 'test.txt', { type: 'text/plain' });
       const event = { target: { files: [validFile] } };
 

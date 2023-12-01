@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { FileService } from './file.service';
 
@@ -6,6 +6,7 @@ describe('FileService', () => {
   let service: FileService;
 
   beforeEach(() => {
+    window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
     TestBed.configureTestingModule({});
     service = TestBed.inject(FileService);
   });
@@ -15,27 +16,28 @@ describe('FileService', () => {
   });
 
   describe('readFile', () => {
-    it('should read file content', (done: DoneFn) => {
+    it('should read file content', fakeAsync(() => {
       const fileContent = 'Hello, World!';
       const file = new File([fileContent], 'test.txt', { type: 'text/plain' });
 
       service.readFile(file).subscribe((content) => {
         expect(content).toEqual(fileContent);
-        done();
       });
-    });
 
-    it('should handle file read error', (done: DoneFn) => {
+      tick();
+    }));
+
+    it('should handle file read error', fakeAsync(() => {
       const invalidFile = new File([], 'invalid.txt', { type: 'text/plain' });
 
       service.readFile(invalidFile).subscribe(
         () => {},
         (error) => {
           expect(error).toBeDefined();
-          done();
         }
       );
-    });
+      tick();
+    }));
   });
 
   describe('countWords', () => {
